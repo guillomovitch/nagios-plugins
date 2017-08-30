@@ -220,6 +220,9 @@ int np_net_ssl_check_cert_real(SSL *ssl, int days_till_exp_warn, int days_till_e
 	int time_remaining;
 	time_t tm_t;
 
+	// Prefix whatever we're about to print with SSL
+	printf("SSL ");
+
 	certificate=SSL_get_peer_certificate(ssl);
 	if (!certificate) {
 		printf("%s\n",_("CRITICAL - Cannot retrieve server certificate."));
@@ -310,7 +313,7 @@ int np_net_ssl_check_cert_real(SSL *ssl, int days_till_exp_warn, int days_till_e
 		else
 			status = STATE_CRITICAL;
 	} else {
-		printf(_("OK - Certificate '%s' will expire on %s.\n"), cn, timestamp);
+		printf(_("OK - Certificate '%s' will expire on %s. "), cn, timestamp);
 		status = STATE_OK;
 	}
 	X509_free(certificate);

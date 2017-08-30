@@ -599,17 +599,6 @@ main (int argc, char **argv)
 				strncat(perfstr, temp_string, sizeof(perfstr)-strlen(perfstr)-1);
 				}
 
-			if (warning_thresholds) {
-				strncat(perfstr, ";", sizeof(perfstr)-strlen(perfstr)-1);
-				strncat(perfstr, warning_thresholds, sizeof(perfstr)-strlen(perfstr)-1);
-			}
-
-			if (critical_thresholds) {
-				if (!warning_thresholds) strncat(perfstr, ";", sizeof(perfstr)-strlen(perfstr)-1);
-				strncat(perfstr, ";", sizeof(perfstr)-strlen(perfstr)-1);
-				strncat(perfstr, critical_thresholds, sizeof(perfstr)-strlen(perfstr)-1);
-			}
-
 			if (type)
 				strncat(perfstr, type, sizeof(perfstr)-strlen(perfstr)-1);
 
@@ -735,7 +724,7 @@ process_arguments (int argc, char **argv)
 	}
 
 	while (1) {
-		c = getopt_long (argc, argv, "nhvVOt:c:w:H:C:o:e:E:d:D:s:t:R:r:l:u:p:m:P:N:L:U:a:x:A:X:",
+		c = getopt_long (argc, argv, "nhvVO46t:c:w:H:C:o:e:E:d:D:s:t:R:r:l:u:p:m:P:N:L:U:a:x:A:X:",
 									 longopts, &option);
 
 		if (c == -1 || c == EOF)
